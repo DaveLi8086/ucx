@@ -187,7 +187,7 @@ static double uct_cuda_ipc_iface_get_bw()
     case UCT_CUDA_BASE_GEN_B100:
         return 800000.0 * UCS_MBYTE;
     default:
-        return 6911.0  * UCS_MBYTE;
+        return 25000.0  * UCS_MBYTE;
     }
 }
 
