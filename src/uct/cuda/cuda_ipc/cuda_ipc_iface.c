@@ -38,11 +38,11 @@ static ucs_config_field_t uct_cuda_ipc_iface_config_table[] = {
      ucs_offsetof(uct_cuda_ipc_iface_config_t, super),
      UCS_CONFIG_TYPE_TABLE(uct_iface_config_table)},
 
-    {"MAX_POLL", "16",
+    {"MAX_POLL", "64",
      "Max number of event completions to pick during cuda events polling",
       ucs_offsetof(uct_cuda_ipc_iface_config_t, params.max_poll), UCS_CONFIG_TYPE_UINT},
 
-    {"MAX_STREAMS", UCS_PP_MAKE_STRING(UCT_CUDA_IPC_MAX_PEERS),
+    {"MAX_STREAMS", "8",
      "Max number of CUDA streams to make concurrent progress on",
       ucs_offsetof(uct_cuda_ipc_iface_config_t, params.max_streams), UCS_CONFIG_TYPE_UINT},
 
@@ -64,7 +64,7 @@ static ucs_config_field_t uct_cuda_ipc_iface_config_table[] = {
      "Effective p2p memory bandwidth",
      ucs_offsetof(uct_cuda_ipc_iface_config_t, params.bandwidth), UCS_CONFIG_TYPE_BW},
 
-    {"LAT", "1.8us",
+    {"LAT", "3.5us",
      "Estimated latency",
      ucs_offsetof(uct_cuda_ipc_iface_config_t, params.latency), UCS_CONFIG_TYPE_TIME},
 
@@ -187,7 +187,7 @@ static double uct_cuda_ipc_iface_get_bw()
     case UCT_CUDA_BASE_GEN_B100:
         return 800000.0 * UCS_MBYTE;
     default:
-        return 25000.0  * UCS_MBYTE;
+        return 16000.0  * UCS_MBYTE;
     }
 }
 
